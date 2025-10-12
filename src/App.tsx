@@ -6,7 +6,15 @@ const App = () => {
 	const [userHand, setUserHand] = useState<Hand | null>(null);
 	const [npcHand, setNpcHand] = useState<Hand | null>(null);
 	const [result, setResult] = useState<string>("");
+	const [streak, setStreak] = useState<number>(0);
+	const [history, setHistory] = useState([]);
 	const hands = ["✊", "✌️", "🖐️"] as const;
+
+	const getWinProbability = (streak: number) => {
+		if (streak === 0) return "—"; // 未勝利時は確率なし
+		const percent = (100 / 2 ** streak).toFixed(2);
+		return `${percent}%`;
+	};
 
 	const getRandomHand = () => {
 		const randomIndex = Math.floor(Math.random() * hands.length);
@@ -21,6 +29,12 @@ const App = () => {
 
 		const gameResult = judgeWinner(hand, npc);
 		setResult(gameResult);
+
+		if (gameResult === "あなたの勝ち") {
+			setStreak((prev) => prev + 1);
+		} else if (gameResult === "あなたの負け") {
+			setStreak(0);
+		}
 	};
 
 	const judgeWinner = (user: Hand, npc: Hand) => {
@@ -50,6 +64,10 @@ const App = () => {
 			<p>あなたの手：{userHand ?? "未選択"}</p>
 			<p>コンピューターの手：{npcHand ?? "未決定"}</p>
 			<p>結果：{result}</p>
+			<p>{streak}連勝中</p>
+			<p>
+				{streak}連勝中！確率{getWinProbability(streak)}
+			</p>
 		</div>
 	);
 };
