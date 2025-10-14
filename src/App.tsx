@@ -62,13 +62,17 @@ const App = () => {
 				<button onClick={() => handleUserHand("✌️")}>✌️ チョキ</button>
 				<button onClick={() => handleUserHand("🖐️")}>🖐️ パー</button>
 			</div>
-			<p>あなたの手：{userHand ?? "未選択"}</p>
-			<p>コンピューターの手：{npcHand ?? "未決定"}</p>
-			<p>結果：{result}</p>
-			<p>{streak}連勝中</p>
-			<p>
-				{streak}連勝中！確率{getWinProbability(streak)}
-			</p>
+			<div className="game-result">
+				<p className="hand-display">あなたの手：{userHand ?? "未選択"}</p>
+				<p className="hand-display">
+					コンピューターの手：{npcHand ?? "未決定"}
+				</p>
+				<p className="result-text">結果：{result}</p>
+
+				<p className="steak-info">
+					{streak}連勝中！確率{getWinProbability(streak)}
+				</p>
+			</div>
 		</div>
 	);
 };

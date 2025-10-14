@@ -33,6 +33,13 @@ button:hover {
 	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
+.game-result {
+	background: linear-gradient(135deg, #f0f8ff 0%, #e1f5fe 100%);
+	border-radius: 12px;
+	width: 400px;
+	margin: 0 auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
 	a:nth-of-type(2) .logo {
 		animation: logo-spin infinite 20s linear;
