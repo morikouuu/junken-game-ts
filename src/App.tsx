@@ -1,14 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-
-type Hand = "✊" | "✌️" | "🖐️";
+import type { Hand, GameResult } from "./types/types";
 
 const App = () => {
 	const [userHand, setUserHand] = useState<Hand | null>(null);
 	const [npcHand, setNpcHand] = useState<Hand | null>(null);
-	const [result, setResult] = useState<string>("");
+	const [result, setResult] = useState<GameResult | "">("");
 	const [streak, setStreak] = useState<number>(0);
-	const [history, setHistory] = useState([]);
 	const hands = ["✊", "✌️", "🖐️"] as const;
 
 	const getWinProbability = (streak: number) => {
@@ -38,7 +36,7 @@ const App = () => {
 		}
 	};
 
-	const judgeWinner = (user: Hand, npc: Hand) => {
+	const judgeWinner = (user: Hand, npc: Hand): GameResult => {
 		if (user === npc) {
 			return "あいこ";
 		}
@@ -69,7 +67,7 @@ const App = () => {
 				</p>
 				<p className="result-text">結果：{result}</p>
 
-				<p className="steak-info">
+				<p className="streak-info">
 					{streak}連勝中！確率{getWinProbability(streak)}
 				</p>
 			</div>
