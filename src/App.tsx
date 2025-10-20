@@ -54,7 +54,6 @@ const App = () => {
 	return (
 		<div>
 			<h1>じゃんけんゲーム</h1>
-			<p>開発中...</p>
 			<div>
 				<button onClick={() => handleUserHand("✊")}>✊ グー</button>
 				<button onClick={() => handleUserHand("✌️")}>✌️ チョキ</button>
